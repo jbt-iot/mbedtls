@@ -90,9 +90,9 @@ set(src_tls
     ssl_tls.c
 )
 
-if(CMAKE_COMPILER_IS_GNUCC)
+#if(CMAKE_COMPILER_IS_GNUCC)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wmissing-declarations -Wmissing-prototypes")
-endif(CMAKE_COMPILER_IS_GNUCC)
+#endif(CMAKE_COMPILER_IS_GNUCC)
 
 if(CMAKE_COMPILER_IS_CLANG)
     set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wmissing-declarations -Wmissing-prototypes -Wdocumentation -Wno-documentation-deprecated-sync -Wunreachable-code")
@@ -130,6 +130,8 @@ endif(ENABLE_ZLIB_SUPPORT)
 if(LINK_WITH_PTHREAD)
     set(libs ${libs} pthread)
 endif()
+
+set(libs ${libs} socket)
 
 if (NOT USE_STATIC_MBEDTLS_LIBRARY AND NOT USE_SHARED_MBEDTLS_LIBRARY)
     message(FATAL_ERROR "Need to choose static or shared mbedtls build!")
